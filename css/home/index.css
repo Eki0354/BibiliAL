@@ -1,0 +1,53 @@
+/* 使点击事件能正常触发 */
+/* #elevator {
+  padding-top: 20px;
+}
+
+#elevator .ear {
+  top: 10px;
+} */
+
+.al-spirit {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  box-sizing: content-box;
+  padding: 10px;
+  top: 20px;
+  right: -10px;
+  transform-origin: 81% 81%;
+  transform: rotate(30deg);
+  transition: all .5s;
+  cursor: url(data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAINSURBVDiNrdFPSJNhHAfw77a3mWu6NF+zmmnbW68xthqhw+1gUQbbJTKQSCTqUFaXRlc9FLYORYc6dNJbhxCl7FAilNTaoMawBFsK76Zuay5sf97XstWep4O6nOBY1O/0OzyfL1+eH/CPoyjmkdF4qKGsctdw9c7a1MJ8ZPKvAgx6A2ezNY25bnTvF79n2oPh6Ltv6cR0UfUOGwwcWs/Gj4/FKSGEEkJox/nLtKJG5ygK17VdiGMwRtEXpPaRUC7k3CUn3cMfaN8Y6/Vc3amuZTwQpuj/QHHHR+3Pg5QQQmOCQHfvMwcBgFmPm/VaLnTwqGfmzHUW5CcgfgXkCmBbCZ7NUTg8CfAP70pqJnsaAGR5H6bVcslGuyfSeZPFrwwgrWBCgC0aYLMK8r4eqd4/YhXCwkReA4vJpI3rmt5EOnpZZNdhlQZQloIb6JXYqZdW7woGAPnqkpUpnfd7rlVXalTA53mAYf7gklJwgy6J9Q1bvYHAxNrWuYDyHbWNDjOPIbMSUCgAcQlQb13GQy6J9T2xegNCHl47my5ecaZXz/QqRajq8QLFoxjd23lVbG7QGTc8GQBU1dS33L7Xn7szIT9o96ifsie6khaeNxWyMgCw2I6MtrSePLa9qgyfJscXQzPhj7LkF/eitPTA/f7tVKEABgDU5RV+94un6rlo9FY6I75Ozc4mClb+n/MbNOPsCpFQi7AAAAAASUVORK5CYII=), pointer;
+}
+
+.al-spirit:hover {
+  right: -15px;
+  transform: rotate(70deg);
+}
+
+.al-spirit img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.al-check-list-box {
+  position: absolute;
+  top: 7px;
+  left: -14px;
+  z-index: 2;
+}
+
+.al-check-list-box input {
+  display: block;
+  height: 24px;
+  line-height: 24px;
+}
+
+.al-disabled {
+  background-color: #999 !important;
+}
+
+.al-hide {
+  display: none;
+}

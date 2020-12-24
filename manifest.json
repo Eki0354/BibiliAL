@@ -1,0 +1,52 @@
+﻿{
+  "manifest_version": 2,
+  "name": "Bilibili AL",
+  "version": "0.1.10",
+  "description": "Bilibili AL",
+  "icons": {
+    "48": "icons/monkey_48.ico"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.bilibili.com/*"
+      ],
+      "js": [
+        "js/constant.js",
+        "js/al.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.bilibili.com/"
+      ],
+      "css": [
+        "css/home/index.css"
+      ],
+      "js": [
+        "js/home/constant.js",
+        "js/home/home.js",
+        "js/home/content_scripts.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.bilibili.com/video/*"
+      ],
+      "css": [
+        "css/video/index.css"
+      ],
+      "js": [
+        "js/video/constant.js",
+        "js/video/content_scripts.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
