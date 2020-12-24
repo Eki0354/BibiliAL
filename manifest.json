@@ -30,7 +30,6 @@
       ],
       "js": [
         "js/home/constant.js",
-        "js/home/home.js",
         "js/home/content_scripts.js"
       ],
       "run_at": "document_idle"
