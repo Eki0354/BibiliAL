@@ -15,6 +15,9 @@
       "matches": [
         "*://*.bilibili.com/*"
       ],
+      "css": [
+        "css/common.css"
+      ],
       "js": [
         "js/constant.js",
         "js/al.js"
@@ -26,7 +29,7 @@
         "*://*.bilibili.com/"
       ],
       "css": [
-        "css/home/index.css"
+        "css/home.css"
       ],
       "js": [
         "js/home/constant.js",
@@ -39,7 +42,7 @@
         "*://*.bilibili.com/video/*"
       ],
       "css": [
-        "css/video/index.css"
+        "css/video.css"
       ],
       "js": [
         "js/video/constant.js",

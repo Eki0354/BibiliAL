@@ -43,11 +43,3 @@
   height: 24px;
   line-height: 24px;
 }
-
-.al-disabled {
-  background-color: #999 !important;
-}
-
-.al-hide {
-  display: none;
-}

@@ -1,7 +1,18 @@
 class AL {
-  // 根据原函数特性，不给force指定默认值，不传时即实现取反效果
+  /**
+   * 根据原函数特性，不给force指定默认值，不传时即实现取反效果
+   * @param {*} e 操作节点。也可传入选择器字符串。
+   * @param {*} key 需要操作的类名。
+   * @param {*} force 是否指定强制转换属性
+   */
   static toggle (e, key, force) {
+    e = typeof e === 'string' ? document.querySelector(e) : e;
     e.classList.toggle(key, force);
+  }
+
+  static toggleAll (list, key, force) {
+    list = typeof list === 'string' ? document.querySelectorAll(list) : list;
+    [].forEach.call(list, e => e.classList.toggle(key, force));
   }
 
   static toggleVisible (e, force) {
