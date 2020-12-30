@@ -1,6 +1,7 @@
 #live_recommand_report,
 #right-bottom-banner,
 #bannerAd,
-#slide_ad {
-  display: none;
+#slide_ad,
+.ad-report {
+  display: none !important;
 }

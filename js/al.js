@@ -15,6 +15,10 @@ class AL {
     [].forEach.call(list, e => e.classList.toggle(key, force));
   }
 
+  static markAds (e) {
+    e.setAttrite('href')
+  }
+
   static toggleVisible (e, force) {
     AL.toggle(e, HIDE_KEY, force);
   }
@@ -37,6 +41,12 @@ class AL {
 
   static disable (e) {
     AL.toggleAble(e, true);
+  }
+
+  static moveToLast (e) {
+    const parent = e.parentNode;
+    parent.removeChild(e);
+    parent.appendChild(e);
   }
 
   static isLogin () {

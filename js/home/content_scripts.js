@@ -14,11 +14,15 @@ class HomeAL {
 
     this.checkListEle = this.createCheckList();
     this.elevatorEle.appendChild(this.checkListEle);
-    this.banItemNodes();
+    this.banItem();
 
     this.addSortEvent();
 
     this.addSpirit();
+
+    this.hideAdsInReportFirst2();
+
+    this.hideAdsBannerInModules();
   }
 
   addSpirit () {
@@ -44,15 +48,45 @@ class HomeAL {
     ele.dataset[ABSTRACT_KEY] = 1;
     ele.innerText = title;
     ele.addEventListener('click', e => {
-      window.scrollTo(0, document.getElementById('bili_report_spe_rec').offsetTop);
+      window.scrollTo(0, document.getElementById(SPE_REC_ID).offsetTop);
     });
     this.itemListEle.appendChild(ele);
     // 特殊推荐 项的节点与其他模块节点的父节点位于同一级，单独添加配置
     this.banConfig.push({
-      id: document.querySelector('.proxy-box+div').id,
+      id: SPE_REC_ID,
       title: title.trim(),
       isAbstract: true
     });
+  }
+
+  // 屏蔽首页顶部推广中的广告类视频，以及 在线列表 下方的广告链接
+  hideAdsInReportFirst2 () {
+    const rf2 = document.getElementById(REPORT_FIRST_2_ID);
+    const videos = rf2.querySelectorAll('.ext-box .ex-card-common');
+    for (const video of videos) {
+      const adMark = video.getElementsByClassName('gg-icon');
+      if (!adMark.length) continue;
+      AL.hide(video);
+      AL.moveToLast(video);
+    }
+
+    const adsUnderOnline = rf2.querySelectorAll('.bypb-window>.operate-card');
+    for (const block of adsUnderOnline) {
+      const adMark = block.getElementsByClassName('gg-icon');
+      if (!adMark.length) continue;
+      block.addEventListener('click', e => e.preventDefault());
+      block.innerHTML = '';
+    }
+  }
+
+  // 屏蔽分类模块可能存在的广告横栏
+  hideAdsBannerInModules () {
+    [].forEach.call(document.querySelectorAll('.proxy-box>div>.banner-card'), n => AL.hide(n));
+  }
+
+  // 屏蔽 会员购 链接，暂未使用
+  hideHuiyuangou () {
+    AL.hide(document.getElementsByClassName('nav-link-item')[4]);
   }
 
   // 因为电梯项可排序，所以配置列表需要动态获取
@@ -86,7 +120,7 @@ class HomeAL {
       default: // 0 - 默认正常
         AL.show(this.spirit);
         AL.hide(this.checkListEle);
-        this.banItemNodes();
+        this.banItem();
         this.getItemList().forEach(n => AL.able(n));
         break;
     }
@@ -131,6 +165,11 @@ class HomeAL {
     return [].slice.call(this.checkListEle.getElementsByTagName('input'));
   }
 
+  // 获取头部频道菜单列表
+  getHeaderItemList () {
+    return [].slice.call(document.getElementById(PRIMARY_CHANNEL_MENU_ID).childNodes);
+  }
+
   // 监听排序按钮点击事件，排序时隐藏非原网页节点
   addSortEvent () {
     this.elevatorEle.querySelector('.list-box>.sort').addEventListener('click', e => {
@@ -155,8 +194,13 @@ class HomeAL {
     });
   }
 
-  banItemNodes () {
+  banItem () {
     const blockedList = this.getBlockedList();
+    this.banItemNodes(blockedList);
+    this.banHeaderItemNodes(blockedList);
+  }
+
+  banItemNodes (blockedList) {
     const itemNodeLists = this.itemListEle.querySelectorAll('.item');
     this.banConfig.forEach((c, i) => {
       const module = document.getElementById(c.id);
@@ -170,6 +214,13 @@ class HomeAL {
   banItemAble () {
     const checkList = this.getCheckItemList();
     this.getItemList().forEach((n, i) => AL.toggleAble(n, !checkList[i].checked));
+  }
+
+  banHeaderItemNodes (blockedList) {
+    this.getHeaderItemList().forEach(n => {
+      const title = n.querySelector('.item>.name>span').firstChild.nodeValue;
+      AL.toggleVisible(n, blockedList.includes(title));
+    });
   }
 }
 
