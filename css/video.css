@@ -19,6 +19,10 @@
   width: 92px;
 }
 
+.video-toolbar .ops>.al-extra-like {
+  width: 42px;
+}
+
 .video-toolbar .ops>.al-extra-like i {
   position: relative;
 }
@@ -31,12 +35,16 @@
   color: #ffcda3;
 } */
 
-.video-toolbar .ops>span .extra-badge {
+.video-toolbar .ops>span .extra-badge-box {
   position: absolute;
-  font-size: 16px;
-  width: 16px;
   height: 16px;
   right: -6px;
   bottom: -6px;
+}
+
+.video-toolbar .ops>span .extra-badge {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
   margin-right: 0;
 }
