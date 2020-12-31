@@ -1,0 +1,46 @@
+.al-extra-like-box {
+  position: absolute;
+  padding-right: 16px;
+  top: 0;
+  left: 0;
+  width: 28px;
+  /* height: 28px; */
+  transform: translateX(-100%);
+  /* 默认隐藏 */
+  display: none;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.like:hover .al-extra-like-box {
+  display: flex;
+}
+
+#arc_toolbar_report .al-extra-like-box i {
+  color: #757575;
+}
+
+.extra-like {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+#arc_toolbar_report .al-extra-like-box .like-and-one-coin:hover,
+#arc_toolbar_report .al-extra-like-box .like-and-one-coin:hover i {
+  color: #70af85;
+}
+
+#arc_toolbar_report .al-extra-like-box .like-and-fav:hover,
+#arc_toolbar_report .al-extra-like-box .like-and-fav:hover i {
+  color: #ffcda3;
+}
+
+.al-extra-like-box .extra-like .extra-badge {
+  position: absolute;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  right: -6px;
+  bottom: -6px;
+  margin-right: 0;
+}
