@@ -8,8 +8,12 @@
   },
   "permissions": [
     "activeTab",
-    "tabs"
+    "tabs",
+    "contextMenus"
   ],
+  "background": {
+    "scripts": ["js/background.js"]
+  },
   "content_scripts": [
     {
       "matches": [
