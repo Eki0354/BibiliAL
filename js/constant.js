@@ -1,3 +1,9 @@
+// 保存屏蔽配置的键名
+const ITEMS_KEY = '__bilibili_al_limited_items_key__';
+
+// 头部频道菜单模块id
+const PRIMARY_CHANNEL_MENU_ID = 'primaryChannelMenu';
+
 // 标识节点是否非页面原生的属性名称
 const ABSTRACT_KEY = 'al_abstract';
 

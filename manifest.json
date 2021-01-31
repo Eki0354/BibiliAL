@@ -58,6 +58,15 @@
         "js/video/content_scripts.js"
       ],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://www.bilibili.com/v/*"
+      ],
+      "js": [
+        "js/channelMenu/content_scripts.js"
+      ],
+      "run_at": "document_idle"
     }
   ]
 }
