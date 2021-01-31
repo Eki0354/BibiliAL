@@ -30,9 +30,9 @@
     },
     {
       "matches": [
-        "*://*.bilibili.com/",
-        "*://*.bilibili.com/?*",
-        "*://*.bilibili.com/#*"
+        "*://www.bilibili.com/",
+        "*://www.bilibili.com/?*",
+        "*://www.bilibili.com/#*"
       ],
       "css": [
         "css/home.css"
@@ -45,7 +45,7 @@
     },
     {
       "matches": [
-        "*://*.bilibili.com/video/*"
+        "*://www.bilibili.com/video/*"
       ],
       "css": [
         "css/video.css"
