@@ -1,3 +1,6 @@
+// 附加到主页电梯的复选框项的类名
+const SPIRIT_CLASS_NAME = 'al-spirit';
+
 // 保存屏蔽配置的键名
 const ITEMS_KEY = '__bilibili_al_limited_items_key__';
 
