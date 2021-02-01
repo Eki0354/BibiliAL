@@ -7,7 +7,7 @@ function openThumbOfThisVideo () {
 /**
  * 执行主体
  */
-(function () {
+(function (type) {
   // 在新页面查看当前视频封面
   openThumbOfThisVideo();
 })();
