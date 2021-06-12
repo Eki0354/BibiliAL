@@ -56,35 +56,6 @@ class VideoAL {
         this.initLikeAndOneCoinAndFavBtn(likeState + coinState + favState >= 6);
         ops.appendChild(this.likeAndOneCoinAndFavBtn);
       }
-
-      // 另一套样式，在点赞按钮上添加鼠标停留悬浮模块
-      // this.likeBtn = document.querySelector(`#${ARC_TOOLBAR_REPORT} .like`);
-      
-      // 为点赞按钮添加漂浮按钮盒子
-      // const extraLikeBox = document.createElement('div');
-      // extraLikeBox.className = 'al-extra-like-box';
-
-      // const likeAndOneCoinBtn = document.createElement('i');
-      // likeAndOneCoinBtn.className = 'van-icon-videodetails_like extra-like like-and-one-coin';
-
-      // // 添加按钮标识
-      // const coinBadge = document.createElement('i');
-      // coinBadge.className = 'van-icon-videodetails_throw extra-badge extra-badge-coin';
-      // likeAndOneCoinBtn.appendChild(coinBadge);
-
-      // extraLikeBox.appendChild(likeAndOneCoinBtn);
-
-      // const likeAndFavBtn = document.createElement('i');
-      // likeAndFavBtn.className = 'van-icon-videodetails_like extra-like like-and-fav';
-
-      // 添加收藏标识
-      // const favBadge = document.createElement('i');
-      // favBadge.className = 'van-icon-videodetails_collec extra-badge extra-badge-fav';
-      // likeAndFavBtn.appendChild(favBadge);
-
-      // extraLikeBox.appendChild(likeAndFavBtn);
-      
-      // this.likeBtn.appendChild(extraLikeBox);
     }, 500);
   }
 
@@ -101,13 +72,10 @@ class VideoAL {
   }
 
   getVideoID () {
-    // const url = document.querySelector('meta[itemprop="url"]').getAttribute('content');
-    // return url.match(/(?<=av)\d+/)[0];
     return AL.getSandboxData('window.vd.aid');
   }
 
   getMyMID () {
-    // return Cookie.getItem(UP_ID_KEY);
     return AL.getSandboxData('window.UserStatus.userInfo.mid');
   }
 
@@ -141,8 +109,6 @@ class VideoAL {
         AL.toggle(this.likeBtn, ON_CLASS_NAME);
         AL.toggle(this.coinBtn, ON_CLASS_NAME);
       });
-      // 禁止冒泡触发原来的点赞过程，悬停定位样式需要执行
-      // e.stopPropagation();
     });
   }
 
@@ -172,8 +138,6 @@ class VideoAL {
         AL.toggle(this.likeBtn, ON_CLASS_NAME);
         AL.toggle(this.coinBtn, ON_CLASS_NAME);
       });
-      // 禁止冒泡触发原来的点赞过程，悬停定位样式需要执行
-      // e.stopPropagation();
     });
   }
 
@@ -243,20 +207,6 @@ class VideoAL {
       }).catch(e => console.log('请求失败'));
     });
   }
-
-  // postFormData (url, data) {
-    // const form = document.createElement('form');
-    // form.method = 'POST';
-    // form.action = url;
-    // Object.keys(data).forEach(key => {
-    //   const input = document.createElement('input');
-    //   input.name = key;
-    //   input.value = data[key];
-    //   form.appendChild(input);
-    // });
-    // document.body.appendChild(form);
-    // form.submit();
-  // }
 }
 
 const videoAL = new VideoAL();

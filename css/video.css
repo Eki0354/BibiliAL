@@ -27,14 +27,6 @@
   position: relative;
 }
 
-/* .video-toolbar .ops>span:hover i.like-and-one-coin {
-  color: #70af85;
-}
-
-.video-toolbar .ops>span:hover i.like-and-fav-default {
-  color: #ffcda3;
-} */
-
 .video-toolbar .ops>span .extra-badge-box {
   position: absolute;
   height: 16px;

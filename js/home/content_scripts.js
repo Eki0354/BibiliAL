@@ -34,7 +34,8 @@ class HomeAL {
       this.changeElevatorStatus(+!this.elevatorStatus);
     });
     const img = document.createElement('img');
-    img.setAttribute('src', AL.isLogin() ? AL.getAvatarImg() : AL.get22Img());
+    let src = AL.isLogin() ? AL.getAvatarImg() : AL.get22Img();
+    img.setAttribute('src', src);
     ele.appendChild(img);
     this.elevatorEle.appendChild(ele);
     this.spirit = ele;

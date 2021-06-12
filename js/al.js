@@ -50,11 +50,13 @@ class AL {
   }
 
   static isLogin () {
-    return !!document.getElementsByClassName(IS_LOGIN_KEY).length;
+    const UserStatus = AL.getSandboxData('window.UserStatus');
+    return UserStatus?.userInfo?.isLogin;
   }
 
   static getAvatarImg () {
-    return document.querySelector('#app .bili-avatar .bili-avatar-face').dataset.src;
+    const UserStatus = AL.getSandboxData('window.UserStatus');
+    return UserStatus?.userInfo?.face;
   }
 
   static get22Img () {
@@ -76,11 +78,31 @@ class AL {
     document.documentElement.removeChild(script); // clean up
   }
 
+  // 通过链式属性路径字符串获取沙箱数据，例如传入 'window.vd.aid' 获取视频av号
   static getSandboxData(path) {
-    AL.safeInvoke(`localStorage.setItem('sandbox_temp_key', ${path})`);
-    let data = localStorage.getItem('sandbox_temp_key');
-    localStorage.removeItem('sandbox_temp_key');
-    return data;
+    const fn =  `
+        (_ => {
+          let res = '';
+          try {
+            res = eval(${path});
+            if (res && res.toString() === '[object Object]') res = JSON.stringify(res);
+          } catch(error) {
+            console.log('AL 获取沙箱数据出错：', error.message);
+          }
+          localStorage.setItem('sandbox_temp_key', res);
+        })()
+      `
+    try {
+      AL.safeInvoke(fn);
+    } finally {
+      let data = localStorage.getItem('sandbox_temp_key');
+      localStorage.removeItem('sandbox_temp_key');
+      let res;
+      try {
+        res = JSON.parse(data);
+      } finally {
+        return res || data;
+      }
+    }
   }
-
 }
