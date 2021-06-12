@@ -1,7 +1,6 @@
 function openThumbOfThisVideo () {
-  const node = document.querySelector('meta[itemprop=thumbnailUrl]');
-  const url = node.getAttribute('content');
-  window.open(url);
+  const vd = AL.getSandboxData('window.vd');
+  window.open(vd?.pic);
 }
 
 /**

@@ -1,7 +1,6 @@
 function openThumbOfThisBangumi () {
-  const node = document.querySelector('meta[property="og:image"]');
-  const url = node.getAttribute('content');
-  window.open(url);
+  const md = AL.getSandboxData('window.md');
+  window.open(md?.cover);
 }
 
 /**

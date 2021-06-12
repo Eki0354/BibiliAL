@@ -1,4 +1,9 @@
 class VideoAPI {
+  /**
+   * 点赞
+   * @param {*} aid 视频av号
+   * @param {*} like 1-点赞；2-取消
+   */
   static like (aid, like) {
     const url = 'https://api.bilibili.com/x/web-interface/archive/like';
     const data = {
@@ -8,7 +13,12 @@ class VideoAPI {
     return http.post(url, data);
   }
 
-  // 投一个硬币，默认点赞
+  /**
+   * 投币 + 点赞
+   * @param {*} aid 视频av号
+   * @param {*} multiply 投币数 
+   * @param {*} select_like 1-点赞；2-取消
+   */
   static addCoin (aid, multiply, select_like = 1) {
     const url = 'https://api.bilibili.com/x/web-interface/coin/add';
     const data = {
@@ -26,7 +36,11 @@ class VideoAPI {
     return http.post(url, data, options);
   }
   
-  // 获取收藏夹列表
+  /**
+   * 获取收藏夹列表
+   * @param {*} aid 视频av号
+   * @param {*} mid 当前登录账号的mid
+   */
   static getFavList (aid, mid) {
     const url = 'https://api.bilibili.com/x/v3/fav/folder/created/list-all';
     const params = {
@@ -37,7 +51,12 @@ class VideoAPI {
     return http.get(url, params);
   }
 
-  // 收藏到 默认收藏夹
+  /**
+   * 收藏到 默认收藏夹
+   * @param {*} aid 视频av号
+   * @param {*} favID 收藏夹id
+   * @param {*} favState 收藏状态
+   */
   static favToDefault (aid, favID, favState) {
     const url = 'https://api.bilibili.com/x/v3/fav/resource/deal';
     const data = {

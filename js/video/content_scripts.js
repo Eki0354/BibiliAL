@@ -98,18 +98,7 @@ class VideoAL {
     `;
 
     // 添加事件
-    this.likeAndOneCoinBtn.addEventListener('click', e => {
-      const aid = this.getVideoID();
-      // 1-点赞；2-取消
-      const like = this.getLikeState();
-      VideoAPI.addCoin(aid, 1, like).then(res => {
-        AL.hide(this.likeAndOneCoinBtn);
-        AL.hide(this.likeAndTwoCoinBtn);
-        AL.hide(this.likeAndOneCoinAndFavBtn);
-        AL.toggle(this.likeBtn, ON_CLASS_NAME);
-        AL.toggle(this.coinBtn, ON_CLASS_NAME);
-      });
-    });
+    this.likeAndOneCoinBtn.addEventListener('click', e => this.halfBuck(1));
   }
 
   initLikeAndTwoCoinBtn (state) {
@@ -127,18 +116,7 @@ class VideoAL {
     `;
 
     // 添加事件
-    this.likeAndTwoCoinBtn.addEventListener('click', e => {
-      const aid = this.getVideoID();
-      // 1-点赞；2-取消
-      const like = this.getLikeState();
-      VideoAPI.addCoin(aid, 2, like).then(res => {
-        AL.hide(this.likeAndOneCoinBtn);
-        AL.hide(this.likeAndTwoCoinBtn);
-        AL.hide(this.likeAndOneCoinAndFavBtn);
-        AL.toggle(this.likeBtn, ON_CLASS_NAME);
-        AL.toggle(this.coinBtn, ON_CLASS_NAME);
-      });
-    });
+    this.likeAndTwoCoinBtn.addEventListener('click', e => this.halfBuck(2));
   }
 
   initLikeAndFavBtn (state) {
@@ -155,21 +133,7 @@ class VideoAL {
     `;
 
     // 添加事件
-    this.likeAndFavBtn.addEventListener('click', async e => {
-      const aid = this.getVideoID();
-      const mid = this.getMyMID();
-      const defaultFav = await this.getDefaultFav(aid, mid);
-      const like = this.getLikeState();
-      const promises = [
-        VideoAPI.like(aid, like),
-        VideoAPI.favToDefault(aid, defaultFav.id, defaultFav.fav_state)
-      ]
-      Promise.all(promises).then(res => {
-        AL.toggle(this.likeAndFavBtn, ON_CLASS_NAME);
-        AL.toggle(this.likeBtn, ON_CLASS_NAME);
-        AL.toggle(this.favBtn, ON_CLASS_NAME);
-      }).catch(e => console.log('请求失败'));
-    });
+    this.likeAndFavBtn.addEventListener('click', e => this.halfBuck(0, true));
   }
 
   initLikeAndOneCoinAndFavBtn (state) {
@@ -187,25 +151,60 @@ class VideoAL {
     `;
 
     // 添加事件
-    this.likeAndOneCoinAndFavBtn.addEventListener('click', async e => {
-      const aid = this.getVideoID();
-      const mid = this.getMyMID();
-      const defaultFav = await this.getDefaultFav(aid, mid);
-      const like = this.getLikeState();
-      const promises = [
-        VideoAPI.addCoin(aid, 1, like),
-        VideoAPI.favToDefault(aid, defaultFav.id, defaultFav.fav_state)
-      ]
-      Promise.all(promises).then(res => {
+    this.likeAndOneCoinAndFavBtn.addEventListener('click', async e => this.halfBuck(1, true));
+  }
+
+  /**
+   * 点赞 + 投币 + 收藏
+   * @param {*} coins 投币数
+   * @param {*} needFav 是否收藏到默认文件夹
+   */
+  async halfBuck(coins = 0, needFav = false) {
+    const aid = this.getVideoID();
+    // 1-点赞；2-取消
+    const like = this.getLikeState();
+    let mid, defaultFav, promises = [];
+
+    // 判断是否收藏到默认收藏夹
+    if (needFav) {
+      mid = this.getMyMID();
+      defaultFav = await this.getDefaultFav(aid, mid);
+      promises.push(VideoAPI.favToDefault(aid, defaultFav.id, defaultFav.fav_state));
+    }
+
+    // 投币 + 点赞 调用一个接口实现，单独点赞 则是另一个独立接口
+    if (coins) {
+      promises.push(VideoAPI.addCoin(aid, coins, like));
+    } else {
+      promises.push(VideoAPI.like(aid, like));
+    }
+
+    try {
+      await Promise.all(promises);
+
+      // 投币不可逆，投币后隐藏所有可投币的按钮并切换原投币按钮状态
+      if (coins) {
         AL.hide(this.likeAndOneCoinBtn);
         AL.hide(this.likeAndTwoCoinBtn);
         AL.hide(this.likeAndOneCoinAndFavBtn);
-        AL.toggle(this.likeAndFavBtn, ON_CLASS_NAME);
-        AL.toggle(this.likeBtn, ON_CLASS_NAME);
         AL.toggle(this.coinBtn, ON_CLASS_NAME);
+      }
+
+      // 切换 点赞 + 收藏 按钮和原收藏按钮状态
+      if (needFav) {
+        AL.toggle(this.likeAndFavBtn, ON_CLASS_NAME);
         AL.toggle(this.favBtn, ON_CLASS_NAME);
-      }).catch(e => console.log('请求失败'));
-    });
+      }
+
+      // 切换原点赞按钮状态
+      AL.toggle(this.likeBtn, ON_CLASS_NAME);
+    } catch (error) {
+      const ops = ['点赞'];
+      if (coins) ops.push('投币 * ' + coins);
+      if (needFav) ops.push('默认收藏');
+      alert(`[${ops.join('，')}] 请求失败`);
+      console.log('请求失败: ' + error.message);
+    }
   }
 }
 

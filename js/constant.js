@@ -15,3 +15,6 @@ const DISABLED_KEY = 'al-disabled';
 
 // 检测是否登录的类名
 const IS_LOGIN_KEY = 'signin';
+
+// CSRF值在cookie中储存的key
+const CSRF_KEY = 'bili_jct';

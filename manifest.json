@@ -12,7 +12,12 @@
     "contextMenus"
   ],
   "background": {
-    "scripts": ["js/background.js"]
+    "scripts": [
+      "js/common/cookie.js",
+      "js/common/fetch.js",
+      "js/common/api.js",
+      "js/background.js"
+    ]
   },
   "content_scripts": [
     {
@@ -23,6 +28,9 @@
         "css/common.css"
       ],
       "js": [
+        "js/common/cookie.js",
+        "js/common/fetch.js",
+        "js/common/api.js",
         "js/constant.js",
         "js/al.js"
       ],
@@ -51,8 +59,6 @@
         "css/video.css"
       ],
       "js": [
-        "js/common/cookie.js",
-        "js/common/fetch.js",
         "js/video/api.js",
         "js/video/constant.js",
         "js/video/content_scripts.js"
