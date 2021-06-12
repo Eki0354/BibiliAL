@@ -25,9 +25,9 @@ class VideoAL {
 
     setTimeout(() => {
       const ops = document.querySelector(`#${ARC_TOOLBAR_REPORT} .ops`);
-      this.likeBtn = ops.querySelector('.like');
-      this.coinBtn = ops.querySelector('.coin');
-      this.favBtn = ops.querySelector('.collect');
+      this.likeBtn = ops.querySelector(':scope .like');
+      this.coinBtn = ops.querySelector(':scope .coin');
+      this.favBtn = ops.querySelector(':scope .collect');
       const likeState = this.getLikeState();
       const coinState = this.getCoinState();
       const favState = this.getFavState();
@@ -101,12 +101,14 @@ class VideoAL {
   }
 
   getVideoID () {
-    const url = document.querySelector('meta[itemprop="url"]').getAttribute('content');
-    return url.match(/(?<=av)\d+/)[0];
+    // const url = document.querySelector('meta[itemprop="url"]').getAttribute('content');
+    // return url.match(/(?<=av)\d+/)[0];
+    return AL.getSandboxData('window.vd.aid');
   }
 
-  getUpMID () {
-    return Cookie.getItem(UP_ID_KEY);
+  getMyMID () {
+    // return Cookie.getItem(UP_ID_KEY);
+    return AL.getSandboxData('window.UserStatus.userInfo.mid');
   }
 
   async getDefaultFav (aid, mid) {
@@ -191,7 +193,7 @@ class VideoAL {
     // 添加事件
     this.likeAndFavBtn.addEventListener('click', async e => {
       const aid = this.getVideoID();
-      const mid = this.getUpMID();
+      const mid = this.getMyMID();
       const defaultFav = await this.getDefaultFav(aid, mid);
       const like = this.getLikeState();
       const promises = [
@@ -223,7 +225,7 @@ class VideoAL {
     // 添加事件
     this.likeAndOneCoinAndFavBtn.addEventListener('click', async e => {
       const aid = this.getVideoID();
-      const mid = this.getUpMID();
+      const mid = this.getMyMID();
       const defaultFav = await this.getDefaultFav(aid, mid);
       const like = this.getLikeState();
       const promises = [
