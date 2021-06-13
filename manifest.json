@@ -56,6 +56,15 @@
       "matches": [
         "*://www.bilibili.com/video/*"
       ],
+      "js": [
+        "js/common/ajax.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://www.bilibili.com/video/*"
+      ],
       "css": [
         "css/video.css"
       ],
