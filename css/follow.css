@@ -1,0 +1,45 @@
+#page-follows .follow-tabs span:not(:last-child) {
+  margin-right: 10px;
+}
+
+#page-follows .follow-main .al-follow-content {
+  padding: 0 20px 20px;
+}
+
+#page-follows .follow-main .al-follow-list {
+  width: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+#page-follows .follow-main .al-follow-list-item {
+  padding: 5px 0;
+  height: 24px;
+}
+
+#page-follows .follow-main .al-follow-select-item {
+  display: block !important;
+  margin-top: 0;
+}
+
+#page-follows .follow-main .al-follow-link {
+  margin-left: 10px;
+  line-height: 24px;
+}
+
+#page-follows .follow-main .al-follow-link-special {
+  font-weight: 700;
+  color: rgb(251, 114, 153);
+}
+
+#page-follows .follow-main .al-follow-content-nav {
+  padding: 10px 0;
+}
+
+.al-follow-content-nav .btn-follow {
+  cursor: pointer;
+}
+
+.al-follow-content-nav .btn-follow:hover {
+  color: #00a1d6;
+}

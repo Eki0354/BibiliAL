@@ -105,4 +105,27 @@ class AL {
       }
     }
   }
+
+  /**
+   * 获取当前登录用户的mid
+   */
+  static getMyMID () {
+    return AL.getSandboxData('window.UserStatus.userInfo.mid');
+  }
+
+  /**
+   * 获取url查询参数对象
+   */
+  static getQuery() {
+    const { search } = window.location;
+    const query = {};
+    if (!search) return query;
+    const [_, rest] = search.split('?');
+    if (!rest) return query;
+    rest.split('&').forEach(pair => {
+      const [key, value] = pair.split('=');
+      query[key] = value;
+    });
+    return query;
+  }
 }

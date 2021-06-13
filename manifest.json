@@ -28,6 +28,7 @@
         "css/common.css"
       ],
       "js": [
+        "js/common/storage.js",
         "js/common/cookie.js",
         "js/common/fetch.js",
         "js/common/api.js",
@@ -71,6 +72,20 @@
       ],
       "js": [
         "js/channelMenu/content_scripts.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://space.bilibili.com/*/fans/follow*"
+      ],
+      "css": [
+        "css/follow.css"
+      ],
+      "js": [
+        "js/follow/constant.js",
+        "js/follow/api.js",
+        "js/follow/content_scripts.js"
       ],
       "run_at": "document_idle"
     }

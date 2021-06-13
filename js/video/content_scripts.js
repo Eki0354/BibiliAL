@@ -75,10 +75,6 @@ class VideoAL {
     return AL.getSandboxData('window.vd.aid');
   }
 
-  getMyMID () {
-    return AL.getSandboxData('window.UserStatus.userInfo.mid');
-  }
-
   async getDefaultFav (aid, mid) {
     const res = await VideoAPI.getFavList(aid, mid);
     return res.data.list.find(i => i.title === '默认收藏夹');
@@ -167,7 +163,7 @@ class VideoAL {
 
     // 判断是否收藏到默认收藏夹
     if (needFav) {
-      mid = this.getMyMID();
+      mid = AL.getMyMID();
       defaultFav = await this.getDefaultFav(aid, mid);
       promises.push(VideoAPI.favToDefault(aid, defaultFav.id, defaultFav.fav_state));
     }
